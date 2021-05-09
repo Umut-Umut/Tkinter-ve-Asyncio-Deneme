@@ -1,16 +1,17 @@
 import asyncio
+from interface import main_label
 
 class Timer:
-    def __init__(self, start=0, stop=0, entry=0):
+    def __init__(self, start=0, entry=0):
         self.time_start = start
-        self.time_stop  = stop
-        self.time_now   = start
-        self.is_over    = False
-        self.entry      = entry
+        self.time_now = 0
+        self.entry = entry
+        self.is_start = False
+        self.is_over = False
 
 
     async def start(self):
-        if self.time_now != self.time_start:
+        if self.is_start:
             return 0
         else:
             time = self.entry.get()
@@ -19,9 +20,10 @@ class Timer:
                 self.time_start = int(time)
                 self.time_now   = int(time)
 
-            while not self.is_over:
+            self.is_start = True
+            for _i in range(self.time_start):
+                main_label.config(text=self.time_now)
                 await asyncio.sleep(1)
-                if self.time_now == self.time_stop:
-                    self.is_over = True
-                    break
-                else: self.time_now -= 1
+                self.time_now -= 1
+
+            self.is_over = True

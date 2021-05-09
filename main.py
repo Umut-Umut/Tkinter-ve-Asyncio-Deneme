@@ -6,6 +6,7 @@ widgets = win.children
 async def render():
     timer = Timer(entry = widgets['!entry'])
 
+    widgets['!label'].config(text=timer.time_now)
     widgets['!frame'].children['!button'].config(
         text="Start",
         command=lambda: asyncio.create_task(timer.start())
@@ -13,16 +14,14 @@ async def render():
 
         # MAIN LOOP
     while True:
-        await asyncio.sleep(0)
+        await asyncio.sleep(0.1)
 
-        widgets['!label'].config(text=timer.time_now)
         if timer.is_over:
             win.geometry("500x500")
             widgets['!label'].config(text="Sure Bitti Mod Damn")
 
         # UPDATE WIDGETS
-        for i in widgets.values():
-            i.update()
+        widgets['!label'].update()
         
         win.update()
 
