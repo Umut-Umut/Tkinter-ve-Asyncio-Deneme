@@ -13,14 +13,12 @@ main_label = tk.Label(win, font="Arial 24 bold")
 
 #=========================== BUTTONS
 button  = tk.Button(frame, text="button")
-button2 = tk.Button(frame, text="button")
 
 #=========================== ENTRYS
 entry = tk.Entry(win, justify="center")
 
 #=========================== FRAME PACK
 button.pack(side='left')
-button2.pack(side='right')
 
 #=========================== WINDOW PACK
 pack_order = [main_label, entry, frame]

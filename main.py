@@ -4,7 +4,7 @@ from timer import *
 widgets = win.children
 
 async def render():
-    timer = Timer(entry = widgets['!entry'])
+    timer = Timer(entry=widgets['!entry'], label=widgets['!label'])
 
     widgets['!label'].config(text=timer.time_now)
     widgets['!frame'].children['!button'].config(
@@ -17,8 +17,9 @@ async def render():
         await asyncio.sleep(0.1)
 
         if timer.is_over:
-            win.geometry("500x500")
-            widgets['!label'].config(text="Sure Bitti Mod Damn")
+            timer.is_start = False
+            timer.is_over = False
+            widgets['!label'].config(text="Sure Bitti")
 
         # UPDATE WIDGETS
         widgets['!label'].update()
