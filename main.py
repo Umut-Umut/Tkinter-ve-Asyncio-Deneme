@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from interface import win
 from timer import *
 
@@ -22,9 +24,11 @@ async def render():
             widgets['!label'].config(text="Sure Bitti")
 
         # UPDATE WIDGETS
-        widgets['!label'].update()
-        
-        win.update()
+        try:
+            widgets['!label'].update()
+            win.update()
+        except:
+            break
 
 
 async def main():
